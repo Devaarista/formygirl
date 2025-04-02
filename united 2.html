@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu 💖</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            color: #333;
+            padding: 20px;
+            overflow: hidden;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            animation: slideUp 1.5s ease-out;
+        }
+
+        button {
+            background-color: #ff5e5e;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff3b3b;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        button:active {
+            transform: scale(0.9) rotate(-5deg);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .emoji {
+            font-size: 50px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hearts {
+            position: fixed;
+            top: -50px;
+            color: red;
+            font-size: 24px;
+            animation: fall 4s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .particles {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: yellow;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleAnim 1.5s infinite ease-in-out;
+        }
+
+        @keyframes particleAnim {
+            0% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1.5); }
+            100% { opacity: 0; transform: scale(0); }
+        }
+
+        .moveButton {
+            animation: moveButton 2s ease-in-out forwards;
+        }
+
+        @keyframes moveButton {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(150px); }
+            100% { transform: translateX(300px); }
+        }
+
+        .horeeText {
+            font-size: 30px;
+            color: #ff6b6b;
+            margin-top: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .horeeEmoji {
+            font-size: 60px;
+            animation: bounce 1s infinite;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContent">
+        <h2>Hai Sayang 💕</h2>
+        <p>Aku minta maaf kalau ada salah. Kamu masih ngambek sama aku? 😢</p>
+
+        <!-- Penjelasan tambahan di sini -->
+        <p>
+            Aku ngerti kok, kalau kamu lagi ngambek. Karena kamu diem sehari tanpa WA-an sama aku, aku jadi ngerasa ada yang kurang gitu. 
+            Rasanya nggak lengkap kalau nggak ada obrolan kita. Maafin aku ya, kalau aku salah, aku cuma pengen kamu tahu betapa pentingnya kamu buat aku. 💖
+        </p>
+        
+        <button onclick="masihNgambek()" id="masihNgambekBtn">Masih... 😔</button>
+        <button onclick="maafin()">Iya, aku maafin! 💖</button>
+    </div>
+
+    <div id="animasiHoree" class="hidden">
+        <p class="horeeEmoji">🎉🎉 HORE!!! 🎉🎉</p>
+        <p class="horeeText">Makasih Ayang, udah maafin aku! 😘💕</p>
+        <p class="horeeText">Tapi bener kan, kamu maafin aku? 😅</p>
+        
+        <!-- Tombol ke WhatsApp -->
+        <button onclick="keWhatsApp()">Iya, bener! 💬</button>
+    </div>
+
+    <script>
+        function maafin() {
+            document.getElementById("mainContent").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("mainContent").style.display = "none";
+                document.getElementById("animasiHoree").classList.remove("hidden");
+                buatHati();
+                buatPartikel();
+            }, 500);
+        }
+
+        function masihNgambek() {
+            // Tombol "Masih" bergerak ke tempat baru
+            document.getElementById("masihNgambekBtn").classList.add("moveButton");
+            setTimeout(() => {
+                alert("Yaahh... maafin aku yaa 😭💕");
+            }, 2000); // Tunggu sampai tombol pindah tempat baru muncul
+        }
+
+        function keWhatsApp() {
+            // Menggunakan nomor WhatsApp 085198268159
+            let nomorWhatsApp = "6285198268159"; // Nomor WhatsApp kamu
+            let pesan = "Makasih Ayang udah maafin aku! 😘💕";
+            window.location.href = `https://wa.me/${nomorWhatsApp}?text=${encodeURIComponent(pesan)}`;
+        }
+
+        function buatHati() {
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("hearts");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 4 + 2) + "s";
+                document.body.appendChild(heart);
+
+                setTimeout(() => { heart.remove(); }, 6000);
+            }
+        }
+
+        function buatPartikel() {
+            for (let i = 0; i < 10; i++) {
+                let particle = document.createElement("div");
+                particle.classList.add("particles");
+                particle.style.left = Math.random() * 100 + "vw";
+                particle.style.top = Math.random() * 100 + "vh";
+                particle.style.animationDuration = (Math.random() * 1.5 + 1) + "s";
+                document.body.appendChild(particle);
+
+                setTimeout(() => { particle.remove(); }, 2000);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
